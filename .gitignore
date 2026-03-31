@@ -9,7 +9,9 @@ node_modules/
 Thumbs.db
 
 # Ignorer les fichiers d'environnement
-.env
+backend/.env
+backend/db.sql
+
 
 # Ignorer les fichiers compilés
 *.class
