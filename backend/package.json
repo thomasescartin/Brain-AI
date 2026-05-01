@@ -13,12 +13,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/thomasescartin/Brain-AI/issues"
   },
   "homepage": "https://github.com/thomasescartin/Brain-AI#readme",
   "dependencies": {
-    "init": "^0.1.2"
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "init": "^0.1.2",
+    "mysql2": "^3.22.3"
   }
 }
