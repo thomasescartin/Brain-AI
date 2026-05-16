@@ -90,7 +90,7 @@ export const modifEmail = async (req, res) => {
 };
 
 //supprimer le compte
-export const deleteAccount = async (req, res) => {
+export const supprimmerCompte = async (req, res) => {
   const supprimmer = await utilisateurs.SupprimmerUtilisateur(
     req.user.id_utilisateur
   );
