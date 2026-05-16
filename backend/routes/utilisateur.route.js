@@ -4,13 +4,16 @@ import {
   login,
   modifEmail,
   supprimmerCompte,
-} from "../controllers/utilisateurs.controller";
+} from "../controllers/utilisateurs.controller.js";
 
-const route = express.Router();
+const utilisateurRoute = express.Router();
 
-route.post("/register", register);
-route.post("/login", login);
-route.put("update", modifEmail);
-route.delete("/delete", supprimmerCompte);
+//Routes d'authentification
+utilisateurRoute.post("/register", register);
+utilisateurRoute.post("/login", login);
 
-export default route;
+//Routes Utilisateurs
+utilisateurRoute.put("/update", modifEmail);
+utilisateurRoute.delete("/delete", supprimmerCompte);
+
+export default utilisateurRoute;
