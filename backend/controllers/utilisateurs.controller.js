@@ -1,4 +1,4 @@
-import * as utilisateurs from "../models/utilisateur.model";
+import * as utilisateurs from "../models/utilisateur.model.js";
 import jwt from "jsonwebtoken";
 import argon2 from "argon2";
 import "dotenv/config";
@@ -80,7 +80,7 @@ export const modifEmail = async (req, res) => {
     req.body.email,
     req.body.mot_de_passe,
     req.body.photo_utilisateur,
-    req.body.role
+    req.body.id_role
   );
   if (!modification) {
     return res.status(404).json({ message: "Utilisateur non trouvé" });

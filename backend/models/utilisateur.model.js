@@ -1,11 +1,10 @@
-import { db } from "../config/db";
+import { db } from "../config/db.js";
 
 // Trouver un utilisateur avec son émail
 export const TrouverUtilisateur = async (email) => {
-  const [sql] = await db.query(
-    "SELECT * FROM utilisateurs WHERE id_utilisateurs = ? email = ?",
-    [email]
-  );
+  const [sql] = await db.query("SELECT * FROM utilisateurs WHERE email = ?", [
+    email,
+  ]);
   return sql[0];
 };
 
@@ -26,11 +25,19 @@ export const ModifUtilisateur = async (
   email,
   mot_de_passe,
   photo_utilisateur,
-  role
+  id_role
 ) => {
   const [sql] = await db.query(
-    "UPDATE utilisateurs SET prenom = ?, nom = ?, email = ?, mot_de_passe = ?, photo_utilisateur = ?, role = ? WHERE id_utilisateur = ?",
-    [id_utilisateur, prenom, nom, email, mot_de_passe, photo_utilisateur, role]
+    "UPDATE utilisateurs SET prenom = ?, nom = ?, email = ?, mot_de_passe = ?, photo_utilisateur = ?, id_role = ? WHERE id_utilisateur = ?",
+    [
+      id_utilisateur,
+      prenom,
+      nom,
+      email,
+      mot_de_passe,
+      photo_utilisateur,
+      id_role,
+    ]
   );
   return sql.affectedRows;
 };
