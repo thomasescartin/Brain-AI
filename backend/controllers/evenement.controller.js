@@ -26,6 +26,7 @@ export const creationEvenement = async (req, res) => {
 //Afficher l'évènement
 export const afficherEvenement = async (req, res) => {
   try {
+    const { id_evenement } = req.params;
     // Vérifier si l'évènement existe déjà
     const evenementExistant = await evenement.trouverEvenement(id_evenement);
     if (!evenementExistant) {
