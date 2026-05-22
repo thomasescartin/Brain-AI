@@ -22,7 +22,7 @@ export const creationProjet = async (req, res) => {
 };
 
 // Affichage du projet
-const afficherProjet = async (req, res) => {
+export const afficherProjet = async (req, res) => {
   try {
     const { id_projet } = req.params;
     //Vérifier si le projet existe déjà
@@ -39,7 +39,7 @@ const afficherProjet = async (req, res) => {
 };
 
 //Modifier le projet
-const modifProjet = async (req, res) => {
+export const modifProjet = async (req, res) => {
   const { id_projet } = req.params;
   const modification = await projet.modifierProjet(
     id_projet,
@@ -53,7 +53,7 @@ const modifProjet = async (req, res) => {
 };
 
 //Supprimmer le projet
-const supprProjet = async (req, res) => {
+export const supprProjet = async (req, res) => {
   const { id_projet } = req.params;
   const supprimmer = await projet.supprimmerProjet(id_projet);
   if (!supprimmer) {

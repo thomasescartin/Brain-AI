@@ -1,5 +1,6 @@
 import { db } from "../config/db.js";
 
+// Trouver un Projet
 export const trouverProjet = async (id_projet) => {
   const [sql] = await db.query("SELECT * FROM projets WHERE id_projet = ?", [
     id_projet,
