@@ -4,6 +4,7 @@ import "dotenv/config";
 import express from "express";
 import evenementRoute from "./routes/evenement.route.js";
 import projetRoute from "./routes/projet.route.js";
+import discussionRoute from "./routes/discussion.route.js";
 
 const PORT = process.env.PORT;
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use("/api/utilisateurs", utilisateurRoute);
 app.use("/api/evenement", evenementRoute);
 app.use("/api/projet", projetRoute);
+app.use("/api/discussion", discussionRoute);
 
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur http://localhost:5000 `);

@@ -4,7 +4,7 @@ import {
   afficherDiscussion,
   modifDiscussion,
   supprDiscussion,
-} from "../controllers/discussion.controller";
+} from "../controllers/discussion.controller.js";
 
 const discussionRoute = express.Router();
 
