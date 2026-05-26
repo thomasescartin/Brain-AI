@@ -9,11 +9,11 @@ import {
 const commentaireRoute = express.Router();
 
 //Routes d'affichage des commentaires
-commantaireRoute.post("/", creationCommentaire);
-commantaireRoute.post("/:id_commentaire", afficherCommentaire);
+commentaireRoute.post("/", creationCommentaire);
+commentaireRoute.post("/:id_commentaire", afficherCommentaire);
 
 //Routes pour la gestion des commentaires
-commantaireRoute.put("/:id_commentaire", modifCommentaire);
-commantaireRoute.delete("/:id_commentaire", supprCommentaire);
+commentaireRoute.put("/:id_commentaire", modifCommentaire);
+commentaireRoute.delete("/:id_commentaire", supprCommentaire);
 
 export default commentaireRoute;
