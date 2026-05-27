@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-// import "./acceuilStyle.css";
+import "../style/acceuilStyle.css";
 
 export default function Acceuil() {
   return (
