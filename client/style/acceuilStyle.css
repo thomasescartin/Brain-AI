@@ -23,7 +23,7 @@ body header div {
 body header div a {
   text-decoration: none;
   color: #79320a;
-  font-family: "Neuton" serif;
+  font-family: "Neuton", serif;
 }
 body header div button {
   background-color: #79320a;
@@ -70,7 +70,7 @@ body section#explorer div h2 {
   font-family: "Alegreya", serif;
 }
 body section#explorer div p {
-  font-family: "Neuton" serif;
+  font-family: "Neuton", serif;
 }
 body section#forum {
   display: flex;
@@ -89,7 +89,7 @@ body section#forum div h2 {
   font-family: "Alegreya", serif;
 }
 body section#forum div p {
-  font-family: "Neuton" serif;
+  font-family: "Neuton", serif;
 }
 body section#forum button {
   background-color: #79320a;
@@ -122,7 +122,7 @@ body section#evenement div h2 {
   font-family: "Alegreya", serif;
 }
 body section#evenement div p {
-  font-family: "Neuton" serif;
+  font-family: "Neuton", serif;
 }
 body section#evenement div button {
   background-color: #79320a;
@@ -155,7 +155,7 @@ body section#projet div h2 {
   font-family: "Alegreya", serif;
 }
 body section#projet div p {
-  font-family: "Neuton" serif;
+  font-family: "Neuton", serif;
 }
 body section#projet button {
   background-color: #79320a;
@@ -170,4 +170,107 @@ body section#projet button {
 body section#projet button:hover {
   background-color: #5b2507;
   color: white;
+}
+
+/*MEDIA QUERIES TABLETTE/MOBILE*/
+
+@media screen and (max-width: 425px) {
+  body header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    height: auto;
+
+    padding: 20px 0;
+  }
+
+  body header div {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 10px;
+  }
+
+  body header div button {
+    width: 120px;
+    height: 40px;
+  }
+
+  /* EXPLORER */
+
+  body section#explorer {
+    flex-direction: column;
+
+    text-align: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+  }
+
+  body section#explorer div h2 {
+    font-size: 1.5rem;
+  }
+
+  body section#explorer div p {
+    font-size: 1rem;
+  }
+
+  /* FORUM */
+
+  body section#forum {
+    flex-direction: column;
+
+    text-align: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+  }
+
+  /* EVENEMENT */
+
+  body section#evenement {
+    flex-direction: column;
+
+    text-align: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+  }
+
+  /* PROJET */
+
+  body section#projet {
+    flex-direction: column;
+
+    text-align: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+  }
+
+  /* BOUTONS */
+
+  button {
+    width: 100%;
+    max-width: 250px;
+  }
 }
