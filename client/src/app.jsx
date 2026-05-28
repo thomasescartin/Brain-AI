@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Acceuil from "../pages/acceuil.jsx";
 import Explorer from "../pages/explorer.jsx";
 import MentionLegales from "../pages/mentionsLegales.jsx";
+import Inscription from "../pages/inscription.jsx";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/" element={<Acceuil />} />
       <Route path="/explorer" element={<Explorer />} />
       <Route path="/mentions" element={<MentionLegales />} />
+      <Route path="/inscription" element={<Inscription />} />
     </Routes>
   );
 }
