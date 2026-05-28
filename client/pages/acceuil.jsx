@@ -23,7 +23,7 @@ export default function Acceuil() {
       </header>
 
       <section id="explorer">
-        <Link to="/categorie">
+        <Link to="/explorer">
           <button>Explorer</button>
         </Link>
 
