@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-// import "./mentionLegaleStyle.css";
+import "../style/mentionStyle.css";
 
 export default function MentionLegales() {
   return (
