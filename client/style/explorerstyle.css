@@ -74,3 +74,36 @@ header button:hover {
 .category-card:hover p {
   color: white;
 }
+
+/* MEDIA QUERIES TABLETTE/MOBILE */
+
+@media screen and (max-width: 700px) {
+  body header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    height: auto;
+
+    padding: 20px 0;
+  }
+
+  body header div {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 10px;
+  }
+
+  body header div button {
+    width: 120px;
+    height: 40px;
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: column;
+  }
+}
