@@ -9,10 +9,10 @@ export const TrouverUtilisateur = async (email) => {
 };
 
 //Créer un utilisateur
-export const CreerUtilisateur = async (email, mot_de_passe) => {
+export const CreerUtilisateur = async (prenom, nom, email, mot_de_passe) => {
   const [sql] = await db.query(
-    "INSERT INTO utilisateurs (email, mot_de_passe) VALUES (?,?)",
-    [email, mot_de_passe]
+    "INSERT INTO utilisateurs (prenom, nom, email, mot_de_passe) VALUES (?,?,?,?)",
+    [prenom, nom, email, mot_de_passe]
   );
   return sql.insertId;
 };

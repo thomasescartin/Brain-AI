@@ -7,7 +7,7 @@ import "dotenv/config";
 
 export const register = async (req, res) => {
   try {
-    const { email, mot_de_passe } = req.body;
+    const { prenom, nom, email, mot_de_passe } = req.body;
 
     // vérifier si l'utilisateur existe déjà
     const utilisateurExistant = await utilisateurs.TrouverUtilisateur(email);
@@ -19,7 +19,12 @@ export const register = async (req, res) => {
     const mot_de_passe_hasher = await argon2.hash(mot_de_passe);
 
     // création de l'utilisateur
-    await utilisateurs.CreerUtilisateur(email, mot_de_passe_hasher);
+    await utilisateurs.CreerUtilisateur(
+      prenom,
+      nom,
+      email,
+      mot_de_passe_hasher
+    );
 
     res.status(201).json({ message: "Compte crée" });
   } catch (error) {
