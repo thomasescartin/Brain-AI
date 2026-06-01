@@ -1,7 +1,7 @@
 form {
   background-color: #ca5310;
   width: 100vw;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,7 @@ form .formulaire {
   flex-direction: column;
   gap: 20px;
 }
-form .formulaire h1 {
+form .formulaire h2 {
   font-family: "Alegreya", serif;
   text-align: center;
   color: #79320a;
@@ -110,4 +110,38 @@ form .formulaire button {
 }
 form .formulaire button:hover {
   background-color: #5b2507;
+}
+
+/*MEDIA QUERIES TABLETTE ET MOBILE */
+@media screen and (max-width: 500px) {
+  form .formulaire {
+    width: 70%;
+    height: auto;
+    padding: 15px;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+  form .formulaire h2 {
+    font-size: 16px;
+  }
+  form .formulaire div {
+    gap: 3px;
+  }
+
+  form .formulaire div input {
+    padding: 6px 7px;
+    width: 100%;
+    height: auto;
+  }
+
+  form .formulaire p {
+    font-size: 10px;
+  }
+
+  form .formulaire button {
+    padding: 6px;
+    font-size: 10px;
+    width: 100px;
+  }
 }
