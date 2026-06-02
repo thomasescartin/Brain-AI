@@ -3,53 +3,42 @@ import jwt from "jsonwebtoken";
 import argon2 from "argon2";
 import "dotenv/config";
 
-// inscription
-
+// INSCRIPTION
 export const register = async (req, res) => {
   try {
     const { prenom, nom, email, mot_de_passe } = req.body;
 
-    // vérifier si l'utilisateur existe déjà
-    const utilisateurExistant = await utilisateurs.TrouverUtilisateur(email);
+    const utilisateurExistant = await utilisateurs.trouverUtilisateur(email);
     if (utilisateurExistant) {
       return res.status(409).json({ message: "Email déjà utilisé" });
     }
 
-    // hash du mdp
-    const mot_de_passe_hasher = await argon2.hash(mot_de_passe);
+    const mot_de_passe_hash = await argon2.hash(mot_de_passe);
 
-    // création de l'utilisateur
-    await utilisateurs.CreerUtilisateur(
-      prenom,
-      nom,
-      email,
-      mot_de_passe_hasher
-    );
+    await utilisateurs.creerUtilisateur(prenom, nom, email, mot_de_passe_hash);
 
-    res.status(201).json({ message: "Compte crée" });
+    res.status(201).json({ message: "Compte créé" });
   } catch (error) {
-    console.error(" Erreur register :", error.message);
+    console.error("Erreur register :", error.message);
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
 
-// connexion utilisateur
-
+// LOGIN
 export const login = async (req, res) => {
   try {
     const { email, mot_de_passe } = req.body;
 
-    // vérifier l'utilisateur
-    const utilisateur = await utilisateurs.TrouverUtilisateur(email);
-    if (!user) {
+    const utilisateur = await utilisateurs.trouverUtilisateur(email);
+
+    if (!utilisateur) {
       return res
         .status(401)
         .json({ message: "Email ou mot de passe invalide" });
     }
 
-    // vérifier le mdp
     const MDPValide = await argon2.verify(
-      utilisateur.mot_de_passe_hasher,
+      utilisateur.mot_de_passe,
       mot_de_passe
     );
 
@@ -59,50 +48,69 @@ export const login = async (req, res) => {
         .json({ message: "Email ou mot de passe invalide" });
     }
 
-    // création du JWT
     const token = jwt.sign(
       {
         id: utilisateur.id_utilisateur,
         email: utilisateur.email,
-        role: utilisateur.role,
+        role: utilisateur.id_role,
       },
-
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN || "1h" }
     );
 
-    res.json({ message: "Connexion réussie", token: token });
+    return res.json({
+      message: "Connexion réussie",
+      token,
+    });
   } catch (error) {
     console.error("Erreur login :", error.message);
-    res.status(500).json({ message: "Erreur serveur", error: error.message });
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };
 
-// modification utilisateur
+// UPDATE UTILISATEUR
 export const modifEmail = async (req, res) => {
-  const modification = await utilisateurs.ModifUtilisateur(
-    req.user.id_utilisateur,
-    req.body.email,
-    req.body.mot_de_passe,
-    req.body.photo_utilisateur,
-    req.body.id_role
-  );
-  if (!modification) {
-    return res.status(404).json({ message: "Utilisateur non trouvé" });
-  }
+  try {
+    const { prenom, nom, email, mot_de_passe, photo_utilisateur, id_role } =
+      req.body;
 
-  res.json({ message: "Utilisateur mis à jour" });
+    const mot_de_passe_hash = mot_de_passe
+      ? await argon2.hash(mot_de_passe)
+      : undefined;
+
+    const modification = await utilisateurs.modifierUtilisateur(
+      req.user.id,
+      prenom,
+      nom,
+      email,
+      mot_de_passe_hash,
+      photo_utilisateur,
+      id_role
+    );
+
+    if (!modification) {
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+    }
+
+    res.json({ message: "Utilisateur mis à jour" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
 };
 
-//supprimer le compte
+// DELETE
 export const supprimmerCompte = async (req, res) => {
-  const supprimmer = await utilisateurs.SupprimmerUtilisateur(
-    req.user.id_utilisateur
-  );
+  try {
+    const supprimmer = await utilisateurs.supprimerUtilisateur(req.user.id);
 
-  if (!supprimmer) {
-    return res.status(404).json({ message: "Utilisateur non trouvé" });
+    if (!supprimmer) {
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+    }
+
+    res.json({ message: "Compte supprimé" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Erreur serveur" });
   }
-
-  res.json({ message: "Comtpe supprimé" });
 };
