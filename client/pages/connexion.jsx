@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../style/formulaire.css";
 
 export default function Connection() {
   const [email, setEmail] = useState("");
@@ -54,38 +55,42 @@ export default function Connection() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Connexion</h2>
+      <div className="formulaire">
+        <h2>Connexion</h2>
 
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Nom"
-          required
-        />
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Nom"
+            required
+          />
+        </div>
+
+        <div>
+          <label>Mot de passe</label>
+          <input
+            type="password"
+            value={mot_de_passe}
+            onChange={(e) => setMotDePasse(e.target.value)}
+            placeholder="Mot de passe"
+            required
+          />
+        </div>
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {success && <p style={{ color: "green" }}>{success}</p>}
+
+        <p>
+          Pas encore de compte ? <Link to="/inscription">S'inscrire</Link>
+        </p>
+
+        <button disabled={!email || !validMDP(mot_de_passe)}>
+          Se connecter
+        </button>
       </div>
-
-      <div>
-        <label>Mot de passe</label>
-        <input
-          type="password"
-          value={mot_de_passe}
-          onChange={(e) => setMotDePasse(e.target.value)}
-          placeholder="Mot de passe"
-          required
-        />
-      </div>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
-
-      <p>
-        Pas encore de compte ? <Link to="/inscription">S'inscrire</Link>
-      </p>
-
-      <button disabled={!email || !validMDP(mot_de_passe)}>Se connecter</button>
     </form>
   );
 }
