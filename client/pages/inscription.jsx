@@ -137,7 +137,7 @@ export default function Inscription() {
           S'inscrire
         </button>
         <p>
-          Vous avez déjà un compte ?<Link to="/login"> Se connecter</Link>
+          Vous avez déjà un compte ?<Link to="/connexion"> Se connecter</Link>
         </p>
       </div>
     </form>
