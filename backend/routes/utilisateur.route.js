@@ -4,6 +4,7 @@ import {
   login,
   modifEmail,
   supprimmerCompte,
+  me,
 } from "../controllers/utilisateurs.controller.js";
 
 const utilisateurRoute = express.Router();
@@ -15,5 +16,6 @@ utilisateurRoute.post("/login", login);
 //Routes Utilisateurs
 utilisateurRoute.put("/update", modifEmail);
 utilisateurRoute.delete("/delete", supprimmerCompte);
+utilisateurRoute.get("/me", me);
 
 export default utilisateurRoute;

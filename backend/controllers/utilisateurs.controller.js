@@ -114,3 +114,21 @@ export const supprimmerCompte = async (req, res) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
+
+//Afficher l'utilisateur
+export const me = async (req, res) => {
+  try {
+    const user = await utilisateurs.TrouverUtilisateur(req.user.email);
+
+    if (!user) {
+      return res.status(404).json({ message: "Utilisateur introuvable" });
+    }
+
+    // on évite de renvoyer le mot de passe
+    delete user.mot_de_passe;
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
