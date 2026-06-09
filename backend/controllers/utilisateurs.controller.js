@@ -97,6 +97,7 @@ export const modifEmail = async (req, res) => {
     console.error(error.message);
     res.status(500).json({ message: "Erreur serveur" });
   }
+  console.log("REQ.USER :", req.user);
 };
 
 // DELETE
@@ -118,17 +119,22 @@ export const supprimmerCompte = async (req, res) => {
 //Afficher l'utilisateur
 export const me = async (req, res) => {
   try {
-    const user = await utilisateurs.TrouverUtilisateur(req.user.email);
+    const user = await utilisateurs.trouverUtilisateur(req.user.email);
 
     if (!user) {
       return res.status(404).json({ message: "Utilisateur introuvable" });
     }
 
-    // on évite de renvoyer le mot de passe
-    delete user.mot_de_passe;
-
-    res.json(user);
+    res.json({
+      id_utilisateur: user.id_utilisateur,
+      prenom: user.prenom,
+      nom: user.nom,
+      email: user.email,
+      photo_utilisateur: user.photo_utilisateur,
+      id_role: user.id_role,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur" });
+    console.error("ERREUR ME :", error);
+    res.status(500).json({ message: error.message });
   }
 };
