@@ -2,6 +2,7 @@ import utilisateurRoute from "./routes/utilisateur.route.js";
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import rateLimit from "express-rate-limit";
 import evenementRoute from "./routes/evenement.route.js";
 import projetRoute from "./routes/projet.route.js";
 import discussionRoute from "./routes/discussion.route.js";
@@ -9,6 +10,12 @@ import commentaireRoute from "./routes/commentaire.route.js";
 import connexionRoute from "./routes/connexion.route.js";
 
 const PORT = process.env.PORT;
+
+export const rateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 3,
+  message: "Trop de tentatives, réessayez dans une minutes.",
+});
 
 const app = express();
 

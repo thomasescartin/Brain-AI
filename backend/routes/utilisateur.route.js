@@ -7,12 +7,14 @@ import {
   me,
 } from "../controllers/utilisateurs.controller.js";
 import { authentificationMiddleware } from "../middleware/authentification.middleware.js";
+import rateLimit from "express-rate-limit";
+import { rateLimiter } from "../serveur.js";
 
 const utilisateurRoute = express.Router();
 
 //Routes d'authentification
 utilisateurRoute.post("/register", register);
-utilisateurRoute.post("/login", login);
+utilisateurRoute.post("/login", rateLimiter, login);
 
 //Routes Utilisateurs
 utilisateurRoute.put("/update", authentificationMiddleware, modifEmail);
