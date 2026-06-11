@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 import evenementRoute from "./routes/evenement.route.js";
 import projetRoute from "./routes/projet.route.js";
 import discussionRoute from "./routes/discussion.route.js";
@@ -18,6 +19,12 @@ export const rateLimiter = rateLimit({
 });
 
 const app = express();
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 
 app.use(express.json());
 app.use(cors());
