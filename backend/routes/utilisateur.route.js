@@ -7,7 +7,7 @@ import {
   me,
 } from "../controllers/utilisateurs.controller.js";
 import { authentificationMiddleware } from "../middleware/authentification.middleware.js";
-import { rateLimiter } from "../serveur.js";
+import { rateLimiter } from "../middleware/ratelimiter.middleware.js";
 
 const utilisateurRoute = express.Router();
 
