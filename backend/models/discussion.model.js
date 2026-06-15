@@ -35,3 +35,8 @@ export const supprimerDiscussion = async (id_discussion) => {
   );
   return sql.affectedRows;
 };
+
+export const toutesDiscussions = async () => {
+  const [rows] = await db.query("SELECT * FROM discussions");
+  return rows;
+};

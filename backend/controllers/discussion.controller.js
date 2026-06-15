@@ -3,7 +3,7 @@ import * as discussion from "../models/discussion.model.js";
 //Création de la discussion
 export const creationDiscussion = async (req, res) => {
   try {
-    const { id_utilisateur } = req.params;
+    const id_utilisateur = req.user.id;
     const { titre, contenue } = req.body;
     //Validation de la discussion
     if (!titre || !contenue) {
@@ -21,6 +21,11 @@ export const creationDiscussion = async (req, res) => {
   } catch (error) {
     console.error("Erreur d'enregistrement:", error.message);
     res.status(500).json({ message: "Erreur serveur." });
+    console.log("USER :", req.user);
+    console.log("ID USER :", req.user?.id);
+    console.log("BODY :", req.body);
+    console.log("DISCUSSIONS :", discussions);
+    console.log("INSERT ID :", insertId);
   }
 };
 
@@ -80,5 +85,18 @@ export const supprDiscussion = async (req, res) => {
     res.status(500).json({
       message: "Erreur serveur.",
     });
+  }
+};
+
+export const tableauDIscussions = async (req, res) => {
+  try {
+    const discut = await discussion.toutesDiscussions();
+    if (!discut) {
+      return res.json(404).json({ message: "Discussion introuvable" });
+    }
+    res.json(discut);
+  } catch (error) {
+    console.error("ERREUR DISCUSSION :", error); // 🔥 IMPORTANT
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };

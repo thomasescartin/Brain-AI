@@ -20,7 +20,7 @@ app.use(
 );
 
 app.use(express.json());
-app.use(cors());
+app.use(cors("http://localhost:5173"));
 
 app.use("/api/utilisateurs", utilisateurRoute);
 app.use("/api/evenement", evenementRoute);
