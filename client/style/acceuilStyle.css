@@ -199,8 +199,6 @@ body section#projet button:hover {
     height: 40px;
   }
 
-  /* EXPLORER */
-
   body section#explorer {
     flex-direction: column;
 
@@ -222,8 +220,6 @@ body section#projet button:hover {
     font-size: 1rem;
   }
 
-  /* FORUM */
-
   body section#forum {
     flex-direction: column;
 
@@ -236,8 +232,6 @@ body section#projet button:hover {
 
     box-sizing: border-box;
   }
-
-  /* EVENEMENT */
 
   body section#evenement {
     flex-direction: column;
@@ -252,8 +246,6 @@ body section#projet button:hover {
     box-sizing: border-box;
   }
 
-  /* PROJET */
-
   body section#projet {
     flex-direction: column;
 
@@ -266,8 +258,6 @@ body section#projet button:hover {
 
     box-sizing: border-box;
   }
-
-  /* BOUTONS */
 
   button {
     width: 100%;

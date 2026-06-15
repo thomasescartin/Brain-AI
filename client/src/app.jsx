@@ -6,6 +6,8 @@ import Explorer from "../pages/explorer.jsx";
 import MentionLegales from "../pages/mentionsLegales.jsx";
 import Inscription from "../pages/inscription.jsx";
 import Connection from "../pages/connexion.jsx";
+import Profil from "../pages/profile.jsx";
+import Discussion from "../pages/discussions.jsx";
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
       <Route path="/mentions" element={<MentionLegales />} />
       <Route path="/inscription" element={<Inscription />} />
       <Route path="/connexion" element={<Connection />} />
+      <Route path="/profile" element={<Profil />} />
+      <Route path="/discussion" element={<Discussion />} />
     </Routes>
   );
 }

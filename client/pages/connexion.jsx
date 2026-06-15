@@ -43,6 +43,9 @@ export default function Connection() {
       if (!response.ok) {
         throw new Error(data.error);
       }
+      localStorage.setItem("token", data.token);
+      console.log("DATA LOGIN :", data);
+
       setSuccess("Connexion réussie");
       navigate("/profile");
       setError("");
