@@ -1,0 +1,53 @@
+.post-card {
+  background: white;
+
+  border-radius: 15px;
+
+  padding: 25px;
+
+  box-shadow: var(--shadow-small);
+
+  margin-bottom: 25px;
+}
+
+.post-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+.post-author {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.post-author h3 {
+  color: var(--color-primary);
+}
+
+.post-author span {
+  font-size: 13px;
+
+  color: gray;
+}
+
+.post-body h2 {
+  margin-bottom: 15px;
+}
+
+.post-body p {
+  line-height: 1.7;
+}
+
+.post-footer {
+  margin-top: 20px;
+
+  display: flex;
+
+  gap: 15px;
+}
