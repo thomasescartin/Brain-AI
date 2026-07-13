@@ -1,0 +1,17 @@
+.card {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 25px;
+
+  box-shadow: var(--shadow-small);
+
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: var(--shadow-large);
+}
