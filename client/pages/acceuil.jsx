@@ -37,6 +37,18 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="about">
+        <h2>Pourquoi Brain_AI ?</h2>
+
+        <p>
+          Brain_AI est un réseau social dédié à l'intelligence artificielle. Son
+          objectif est de rassembler étudiants, développeurs, chercheurs et
+          professionnels afin de favoriser le partage de connaissances, la
+          collaboration sur des projets innovants et la découverte d'évènements
+          liés à l'IA.
+        </p>
+      </section>
+
       {/* Fonctionnalités */}
 
       <section className="features">
@@ -47,6 +59,7 @@ export default function Home() {
             Échangez avec la communauté autour de l'IA, du Machine Learning, du
             Deep Learning ou encore de la cybersécurité.
           </p>
+          <Link to="/discussion" className="feature-card"></Link>
         </div>
 
         <div className="feature-card">
@@ -56,6 +69,7 @@ export default function Home() {
             Présentez vos projets, trouvez des collaborateurs et découvrez les
             réalisations de la communauté.
           </p>
+          <Link to="/projet" className="feature-card"></Link>
         </div>
 
         <div className="feature-card">
@@ -65,6 +79,7 @@ export default function Home() {
             Retrouvez les conférences, hackathons, formations et meetups
             consacrés à l'intelligence artificielle.
           </p>
+          <Link to="/evenements" className="feature-card"></Link>
         </div>
       </section>
     </main>

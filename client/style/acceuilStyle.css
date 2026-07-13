@@ -143,3 +143,31 @@ FEATURES
 
   line-height: 1.6;
 }
+
+.about {
+  padding: 80px 20px;
+
+  background: white;
+
+  text-align: center;
+}
+
+.about h2 {
+  color: var(--color-primary);
+
+  margin-bottom: 30px;
+
+  font-size: 40px;
+}
+
+.about p {
+  max-width: 900px;
+
+  margin: auto;
+
+  line-height: 1.8;
+
+  color: var(--color-text-light);
+
+  font-size: 18px;
+}
