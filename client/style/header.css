@@ -1,0 +1,57 @@
+.header {
+  height: 75px;
+
+  background: var(--color-primary);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 0 40px;
+
+  box-shadow: var(--shadow-medium);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.logo img {
+  width: 50px;
+}
+
+.logo h1 {
+  color: white;
+
+  font-size: 28px;
+}
+
+.header nav {
+  display: flex;
+
+  gap: 30px;
+}
+
+.header nav a {
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.25s;
+}
+
+.header nav a:hover {
+  color: var(--color-secondary);
+}
