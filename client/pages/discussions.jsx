@@ -58,7 +58,7 @@ export default function Discussion() {
       {/* Bouton ouverture */}
       <button onClick={() => setIsOpen(true)}>+ Créer une discussion</button>
 
-      {/* MODALE */}
+      {/* Modale */}
       {isOpen && (
         <div className="modal-overlay" onClick={() => setIsOpen(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -91,7 +91,7 @@ export default function Discussion() {
         </div>
       )}
 
-      {/* LISTE */}
+      {/* Liste de discussion */}
       <div>
         {discussions.map((d) => (
           <div key={d.id_discussion} className="card">

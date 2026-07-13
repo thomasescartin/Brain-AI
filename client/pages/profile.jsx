@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../style/formulaire.css";
 
 export default function Profil() {
   const navigate = useNavigate();
@@ -99,18 +100,17 @@ export default function Profil() {
         <button onClick={handleLogout}>Déconnexion</button>
       </header>
 
-      <h2>Mon profil</h2>
-
-      {/* AVATAR */}
-      <img
-        src={avatar || "https://via.placeholder.com/150"}
-        alt="avatar"
-        style={{ width: "150px", borderRadius: "50%" }}
-      />
-
-      <input type="file" onChange={handleAvatarChange} />
-
       <form onSubmit={handleSubmit}>
+        <h2>Mon profil</h2>
+
+        {/* AVATAR */}
+        <img
+          src={avatar || "https://via.placeholder.com/150"}
+          alt="avatar"
+          style={{ width: "150px", borderRadius: "50%" }}
+        />
+
+        <input type="file" onChange={handleAvatarChange} />
         <p>Prénom : {user.prenom}</p>
         <p>Nom : {user.nom}</p>
 
