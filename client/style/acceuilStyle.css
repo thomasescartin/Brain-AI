@@ -1,266 +1,145 @@
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+.home {
+  min-height: 100vh;
 }
-body header {
-  position: fixed;
-  background-color: #ca5310;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 10vh;
+
+/*******************
+ HERO
+********************/
+
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+
+  color: white;
+
+  padding: 80px 20px;
+
+  text-align: center;
 }
-body header div {
+
+.hero-content {
+  max-width: 900px;
+
+  margin: auto;
+}
+
+.hero-logo {
+  width: 180px;
+
+  margin: auto;
+
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: 48px;
+
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+
+  line-height: 1.6;
+
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 30px;
+
+  justify-content: center;
+
   gap: 20px;
+
+  flex-wrap: wrap;
 }
-body header div a {
-  text-decoration: none;
-  color: #79320a;
-  font-family: "Neuton", serif;
-}
-body header div button {
-  background-color: #79320a;
-  color: #ca5310;
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: "Alegreya", serif;
-}
-body header div button:hover {
-  background-color: #5b2507;
+
+.btn-primary {
+  background: var(--color-secondary);
+
   color: white;
+
+  padding: 15px 30px;
+
+  border-radius: 10px;
+
+  transition: 0.3s;
 }
-body section#explorer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+  background: white;
+
+  color: var(--color-primary);
+
+  padding: 15px 30px;
+
+  border-radius: 10px;
+
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow-medium);
+}
+
+/*******************
+FEATURES
+********************/
+
+.features {
+  max-width: 1200px;
+
+  margin: 80px auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
   gap: 30px;
-  width: 97vw;
-  height: 97vh;
-}
-body section#explorer button {
-  background-color: #79320a;
-  color: #ca5310;
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: "Alegreya", serif;
-}
-body section#explorer button:hover {
-  background-color: #5b2507;
-  color: white;
-}
-body section#explorer div {
-  display: flex;
-  flex-direction: column;
-}
-body section#explorer div h2 {
-  font-family: "Alegreya", serif;
-}
-body section#explorer div p {
-  font-family: "Neuton", serif;
-}
-body section#forum {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  width: 97vw;
-  height: 97vh;
-}
-body section#forum div {
-  display: flex;
-  flex-direction: column;
-}
-body section#forum div h2 {
-  font-family: "Alegreya", serif;
-}
-body section#forum div p {
-  font-family: "Neuton", serif;
-}
-body section#forum button {
-  background-color: #79320a;
-  color: #ca5310;
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: "Alegreya", serif;
-}
-body section#forum button:hover {
-  background-color: #5b2507;
-  color: white;
-}
-body section#evenement {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  width: 97vw;
-  height: 97vh;
-}
-body section#evenement div {
-  display: flex;
-  flex-direction: column;
-}
-body section#evenement div h2 {
-  font-family: "Alegreya", serif;
-}
-body section#evenement div p {
-  font-family: "Neuton", serif;
-}
-body section#evenement div button {
-  background-color: #79320a;
-  color: #ca5310;
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: "Alegreya", serif;
-}
-body section#evenement div button:hover {
-  background-color: #5b2507;
-  color: white;
-}
-body section#projet {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  width: 97vw;
-  height: 97vh;
-}
-body section#projet div {
-  display: flex;
-  flex-direction: column;
-}
-body section#projet div h2 {
-  font-family: "Alegreya", serif;
-}
-body section#projet div p {
-  font-family: "Neuton", serif;
-}
-body section#projet button {
-  background-color: #79320a;
-  color: #ca5310;
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: "Alegreya", serif;
-}
-body section#projet button:hover {
-  background-color: #5b2507;
-  color: white;
+
+  padding: 20px;
 }
 
-/*MEDIA QUERIES TABLETTE/MOBILE*/
+.feature-card {
+  background: white;
 
-@media screen and (max-width: 425px) {
-  body header {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  border-radius: 15px;
 
-    position: relative;
+  padding: 30px;
 
-    height: auto;
+  text-align: center;
 
-    padding: 20px 0;
-  }
+  box-shadow: var(--shadow-small);
 
-  body header div {
-    flex-wrap: wrap;
-    justify-content: center;
+  transition: 0.3s;
+}
 
-    padding: 10px;
-  }
+.feature-card:hover {
+  transform: translateY(-8px);
 
-  body header div button {
-    width: 120px;
-    height: 40px;
-  }
+  box-shadow: var(--shadow-large);
+}
 
-  body section#explorer {
-    flex-direction: column;
+.feature-card h2 {
+  color: var(--color-primary);
 
-    text-align: center;
+  margin-bottom: 20px;
+}
 
-    width: 100%;
-    min-height: 100vh;
+.feature-card p {
+  color: var(--color-text-light);
 
-    padding: 40px 20px;
-
-    box-sizing: border-box;
-  }
-
-  body section#explorer div h2 {
-    font-size: 1.5rem;
-  }
-
-  body section#explorer div p {
-    font-size: 1rem;
-  }
-
-  body section#forum {
-    flex-direction: column;
-
-    text-align: center;
-
-    width: 100%;
-    min-height: 100vh;
-
-    padding: 40px 20px;
-
-    box-sizing: border-box;
-  }
-
-  body section#evenement {
-    flex-direction: column;
-
-    text-align: center;
-
-    width: 100%;
-    min-height: 100vh;
-
-    padding: 40px 20px;
-
-    box-sizing: border-box;
-  }
-
-  body section#projet {
-    flex-direction: column;
-
-    text-align: center;
-
-    width: 100%;
-    min-height: 100vh;
-
-    padding: 40px 20px;
-
-    box-sizing: border-box;
-  }
-
-  button {
-    width: 100%;
-    max-width: 250px;
-  }
+  line-height: 1.6;
 }

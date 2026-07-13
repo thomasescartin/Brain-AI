@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import "../style/header.css";
+import logo from "../src/assets/logo.png";
 
 export default function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <img src="/logo.png" alt="Brain_AI" />
+        <img src={logo} alt="Brain_AI" />
 
         <h1>Brain_AI</h1>
       </div>

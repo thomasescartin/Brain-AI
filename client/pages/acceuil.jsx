@@ -1,86 +1,72 @@
 import { Link } from "react-router-dom";
 import "../style/acceuilStyle.css";
+import logo from "../src/assets/logo.png";
 
-export default function Acceuil() {
+export default function Home() {
+  const token = localStorage.getItem("token");
+
   return (
-    <>
-      <header>
-        <div>
-          <img src="" alt="Image du logo" />
+    <main className="home">
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero-content">
+          <img src={logo} alt="Brain_AI" className="hero-logo" />
 
-          <Link to="/mentions">A propos</Link>
-        </div>
+          <h1>Bienvenue sur Brain_AI</h1>
 
-        <div>
-          <Link to="/connexion">
-            <button>Se connecter</button>
-          </Link>
+          <p>
+            Le réseau social dédié aux passionnés, étudiants et professionnels
+            de l'intelligence artificielle.
+          </p>
 
-          <Link to="/inscription">
-            <button>S'enregistrer</button>
-          </Link>
-        </div>
-      </header>
+          {!token ? (
+            <div className="hero-buttons">
+              <Link to="/inscription" className="btn-primary">
+                Rejoindre la communauté
+              </Link>
 
-      <section id="explorer">
-        <Link to="/explorer">
-          <button>Explorer</button>
-        </Link>
-
-        <div>
-          <h3>Vous ne savez pas par où commencer ?</h3>
-          <p>Retrouvez ici nos différentes catégories</p>
-          <div>
-            <img src="" alt="" />
-          </div>
+              <Link to="/connexion" className="btn-secondary">
+                Se connecter
+              </Link>
+            </div>
+          ) : (
+            <Link to="/discussion" className="btn-primary">
+              Accéder aux discussions
+            </Link>
+          )}
         </div>
       </section>
 
-      <section id="forum">
-        <div>
-          <h3>
-            Rencontrez des pros de l'IA.
-            <br />
-            Partagez avec des passionnés.
-          </h3>
-          <div>
-            <img src="" alt="" />
-          </div>
+      {/* Fonctionnalités */}
+
+      <section className="features">
+        <div className="feature-card">
+          <h2>💬 Discussions</h2>
+
+          <p>
+            Échangez avec la communauté autour de l'IA, du Machine Learning, du
+            Deep Learning ou encore de la cybersécurité.
+          </p>
         </div>
 
-        <Link to="/forum">
-          <button>Forum</button>
-        </Link>
+        <div className="feature-card">
+          <h2>🚀 Projets</h2>
+
+          <p>
+            Présentez vos projets, trouvez des collaborateurs et découvrez les
+            réalisations de la communauté.
+          </p>
+        </div>
+
+        <div className="feature-card">
+          <h2>📅 Évènements</h2>
+
+          <p>
+            Retrouvez les conférences, hackathons, formations et meetups
+            consacrés à l'intelligence artificielle.
+          </p>
+        </div>
       </section>
-
-      <section id="evenement">
-        <div>
-          <h3>Envie de participer à un évènement ?</h3>
-          <p>Enregistrez-vous en dessous !</p>
-
-          <Link to="/evenement">
-            <button>Evénement</button>
-          </Link>
-        </div>
-
-        <div>
-          <img src="" alt="" />
-        </div>
-      </section>
-
-      <section id="projet">
-        <div>
-          <h3>Participez à un projet.</h3>
-          <p>Rejoignez nos projets open-source.</p>
-          <div>
-            <img src="" alt="" />
-          </div>
-        </div>
-
-        <Link to="/projet">
-          <button>Projet</button>
-        </Link>
-      </section>
-    </>
+    </main>
   );
 }
