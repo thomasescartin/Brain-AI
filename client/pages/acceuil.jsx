@@ -82,6 +82,15 @@ export default function Home() {
           <Link to="/evenements" className="feature-card"></Link>
         </div>
       </section>
+      <section className="join">
+        <h2>Prêt à rejoindre la communauté ?</h2>
+
+        <p>Inscrivez-vous gratuitement et commencez à partager vos idées.</p>
+
+        <Link to="/inscription" className="btn-primary">
+          Créer un compte
+        </Link>
+      </section>
     </main>
   );
 }

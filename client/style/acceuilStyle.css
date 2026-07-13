@@ -171,3 +171,19 @@ FEATURES
 
   font-size: 18px;
 }
+
+.join {
+  text-align: center;
+
+  padding: 80px;
+
+  background: white;
+}
+
+.join h2 {
+  margin-bottom: 20px;
+}
+
+.join p {
+  margin-bottom: 30px;
+}
