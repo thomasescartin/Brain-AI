@@ -59,7 +59,7 @@ export default function Home() {
             Échangez avec la communauté autour de l'IA, du Machine Learning, du
             Deep Learning ou encore de la cybersécurité.
           </p>
-          <Link to="/discussion" className="feature-card"></Link>
+          <Link to="/discussion"></Link>
         </div>
 
         <div className="feature-card">
@@ -69,7 +69,7 @@ export default function Home() {
             Présentez vos projets, trouvez des collaborateurs et découvrez les
             réalisations de la communauté.
           </p>
-          <Link to="/projet" className="feature-card"></Link>
+          <Link to="/projet"></Link>
         </div>
 
         <div className="feature-card">
@@ -79,7 +79,7 @@ export default function Home() {
             Retrouvez les conférences, hackathons, formations et meetups
             consacrés à l'intelligence artificielle.
           </p>
-          <Link to="/evenements" className="feature-card"></Link>
+          <Link to="/evenements"></Link>
         </div>
       </section>
       <section className="join">
@@ -89,6 +89,11 @@ export default function Home() {
 
         <Link to="/inscription" className="btn-primary">
           Créer un compte
+        </Link>
+
+        <p>Vous posséder déjà un compte ?</p>
+        <Link to="connexion" className="btn-primary">
+          Connectez-vous
         </Link>
       </section>
     </main>

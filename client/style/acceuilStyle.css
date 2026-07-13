@@ -59,15 +59,18 @@
 }
 
 .btn-primary {
+  display: inline-block;
   background: var(--color-secondary);
 
-  color: white;
+  color: var(--color-primary);
 
   padding: 15px 30px;
 
   border-radius: 10px;
 
   transition: 0.3s;
+
+  text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -186,4 +189,8 @@ FEATURES
 
 .join p {
   margin-bottom: 30px;
+}
+
+link {
+  color: var(--color-text);
 }
