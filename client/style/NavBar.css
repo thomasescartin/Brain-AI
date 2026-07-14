@@ -1,0 +1,57 @@
+.navbar {
+  background: var(--color-primary);
+
+  height: 75px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 0 40px;
+
+  box-shadow: var(--shadow-medium);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 999;
+}
+
+.navbar-logo a {
+  color: white;
+
+  font-size: 28px;
+
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+
+  gap: 30px;
+}
+
+.navbar-links a {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: white;
+
+  transition: 0.3s;
+}
+
+.navbar-links a:hover {
+  color: var(--color-secondary);
+}
+
+.navbar-profile {
+  display: flex;
+
+  align-items: center;
+}
