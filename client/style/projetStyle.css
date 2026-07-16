@@ -1,0 +1,79 @@
+.projet-page {
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 40px;
+}
+
+.page-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  color: var(--color-primary);
+}
+
+.liste-projets {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.input-group {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+
+  font-weight: 600;
+}
+
+.input-group textarea {
+  min-height: 150px;
+
+  resize: vertical;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ccc;
+
+  font-family: inherit;
+}
+
+.tech-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.badge {
+  background: var(--color-secondary);
+
+  color: white;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+}
