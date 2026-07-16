@@ -5,7 +5,7 @@ import Modal from "../components/Modal/Modal";
 import Input from "../components/Input/Input";
 import PostCard from "../components/PostCard/PostCard";
 
-import { getProjets, createProjet } from "../services/projet.service";
+import { getProjets, createProjet } from "../service/projet.service.js";
 
 import "../style/projetStyle.css";
 
