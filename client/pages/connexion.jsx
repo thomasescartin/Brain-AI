@@ -57,7 +57,7 @@ export default function Connection() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="auth-form" onSubmit={handleSubmit}>
       <div className="formulaire">
         <h2>Connexion</h2>
 
