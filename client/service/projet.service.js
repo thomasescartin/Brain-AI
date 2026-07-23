@@ -1,6 +1,6 @@
 import { apiFetch } from "./api";
 
-export function getProjet() {
+export function getProjets() {
   return apiFetch("/projet");
 }
 

@@ -1,6 +1,6 @@
 import "../style/Avatar.css";
 
-import avatarDefault from "../../assets/avatar.png";
+import avatarDefault from "../src/assets/logo.png";
 
 export default function Avatar({
   src,

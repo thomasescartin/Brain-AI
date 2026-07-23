@@ -1,7 +1,7 @@
-import "..style/PostCard.css";
+import "../style/PostCard.css";
 
-import Avatar from "../Avatar/Avatar";
-import Button from "../Button/Button";
+import Avatar from "../components/Avatar.jsx";
+import Button from "../components/Button.jsx";
 
 export default function PostCard({
   auteur,

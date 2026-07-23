@@ -10,6 +10,7 @@ import Profil from "../pages/profile.jsx";
 import Discussion from "../pages/discussions.jsx";
 import Header from "../components/header.jsx";
 import Footer from "../components/Footer.jsx";
+import Projet from "../pages/projet.jsx";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/connexion" element={<Connection />} />
         <Route path="/profile" element={<Profil />} />
         <Route path="/discussion" element={<Discussion />} />
+        <Route path="/projets" element={<Projet />} />
       </Routes>
       <Footer />
     </>

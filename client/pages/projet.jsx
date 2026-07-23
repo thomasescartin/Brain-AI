@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import Button from "../components/Button/Button";
-import Modal from "../components/Modal/Modal";
-import Input from "../components/Input/Input";
-import PostCard from "../components/PostCard/PostCard";
+import Button from "../components/Button.jsx";
+import Modal from "../components/Modale.jsx";
+import Input from "../components/Input.jsx";
+import PostCard from "../components/PostCard.jsx";
 
 import { getProjets, createProjet } from "../service/projet.service.js";
 
