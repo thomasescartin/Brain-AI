@@ -9,10 +9,24 @@ export const trouverProjet = async (id_projet) => {
 };
 
 //Créer un projet
-export const creerProjet = async (titre, date_projet) => {
+export const creerProjet = async (
+  titre,
+  description,
+  technologies,
+  image_projet,
+  id_utilisateur
+) => {
   const [sql] = await db.query(
-    "INSERT INTO projets (titre, date_projet) VALUES (?, ?)",
-    [titre, date_projet]
+    `INSERT INTO projets
+        (
+            titre,
+            description,
+            technologies,
+            image_projet,
+            id_utilisateur
+        )
+        VALUES (?, ?, ?, ?, ?)`,
+    [titre, description, technologies, image_projet, id_utilisateur]
   );
   return sql.insertId;
 };
