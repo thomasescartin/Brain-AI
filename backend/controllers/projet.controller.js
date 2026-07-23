@@ -61,3 +61,17 @@ export const supprProjet = async (req, res) => {
   }
   res.json({ message: "Projet supprimé." });
 };
+
+export const tableauProjets = async (req, res) => {
+  try {
+    const projets = await projet.tousLesProjets();
+
+    res.json(projets);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Erreur serveur",
+    });
+  }
+};

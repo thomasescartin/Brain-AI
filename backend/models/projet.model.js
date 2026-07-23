@@ -33,3 +33,9 @@ export const supprimmerProjet = async (id_projet) => {
   ]);
   return sql.affectedRows;
 };
+
+export const tousLesProjets = async () => {
+  const [rows] = await db.query("SELECT * FROM projets");
+
+  return rows;
+};
