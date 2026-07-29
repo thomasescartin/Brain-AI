@@ -5,7 +5,11 @@ import Modal from "../components/Modale.jsx";
 import Input from "../components/Input.jsx";
 import PostCard from "../components/PostCard.jsx";
 
-import { getProjets, createProjet } from "../service/projet.service.js";
+import {
+  getProjets,
+  createProjet,
+  updateProjet,
+} from "../service/projet.service.js";
 
 import "../style/projetStyle.css";
 
@@ -18,7 +22,10 @@ export default function Projet() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // Chargement des projets
+  const [modeEdition, setModeEdition] = useState(false);
+  const [projetSelectionne, setProjetSelectionne] = useState(null);
+
+  // Chargement initial
   useEffect(() => {
     chargerProjets();
   }, []);
@@ -32,24 +39,51 @@ export default function Projet() {
     }
   }
 
-  // Création d'un projet
+  function fermerModal() {
+    setIsOpen(false);
+
+    setModeEdition(false);
+
+    setProjetSelectionne(null);
+
+    setTitre("");
+    setDescription("");
+    setTechnologies("");
+  }
+
+  function ouvrirEdition(projet) {
+    setProjetSelectionne(projet);
+
+    setModeEdition(true);
+
+    setTitre(projet.titre);
+    setDescription(projet.description);
+    setTechnologies(projet.technologies ?? "");
+
+    setIsOpen(true);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const nouveauProjet = await createProjet({
-        titre,
-        description,
-        technologies,
-      });
+      if (modeEdition) {
+        await updateProjet(projetSelectionne.id_projet, {
+          titre,
+          description,
+          technologies,
+        });
+      } else {
+        await createProjet({
+          titre,
+          description,
+          technologies,
+        });
+      }
 
-      setProjets((prev) => [...prev, nouveauProjet]);
+      await chargerProjets();
 
-      setTitre("");
-      setDescription("");
-      setTechnologies("");
-
-      setIsOpen(false);
+      fermerModal();
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -61,19 +95,27 @@ export default function Projet() {
       <div className="page-header">
         <h1>🚀 Projets</h1>
 
-        <Button onClick={() => setIsOpen(true)}>Nouveau projet</Button>
+        <Button
+          onClick={() => {
+            fermerModal();
+            setIsOpen(true);
+          }}
+        >
+          Nouveau projet
+        </Button>
       </div>
 
       <Modal
         isOpen={isOpen}
-        title="Créer un projet"
-        onClose={() => setIsOpen(false)}
+        title={modeEdition ? "Modifier le projet" : "Créer un projet"}
+        onClose={fermerModal}
       >
         <form onSubmit={handleSubmit}>
           <Input
             label="Titre"
             value={titre}
             onChange={(e) => setTitre(e.target.value)}
+            required
           />
 
           <Input
@@ -93,7 +135,9 @@ export default function Projet() {
             />
           </div>
 
-          <Button type="submit">Publier</Button>
+          <Button type="submit">
+            {modeEdition ? "Enregistrer" : "Publier"}
+          </Button>
         </form>
       </Modal>
 
@@ -118,6 +162,10 @@ export default function Projet() {
                     {tech.trim()}
                   </span>
                 ))}
+              </div>
+
+              <div className="actions-projet">
+                <Button onClick={() => ouvrirEdition(projet)}>Modifier</Button>
               </div>
             </PostCard>
           ))
