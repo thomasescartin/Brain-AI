@@ -9,6 +9,7 @@ import {
   getProjets,
   createProjet,
   updateProjet,
+  deleteProjet,
 } from "../service/projet.service.js";
 
 import "../style/projetStyle.css";
@@ -86,6 +87,24 @@ export default function Projet() {
       fermerModal();
     } catch (error) {
       console.error(error);
+      alert(error.message);
+    }
+  }
+
+  async function supprimerProjet(id_projet) {
+    const confirmation = window.confirm(
+      "Voulez-vous vraiment supprimer ce projet ?"
+    );
+
+    if (!confirmation) return;
+
+    try {
+      await deleteProjet(id_projet);
+
+      await chargerProjets();
+    } catch (error) {
+      console.error(error);
+
       alert(error.message);
     }
   }
