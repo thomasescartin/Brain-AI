@@ -1,14 +1,24 @@
 import { db } from "../config/db.js";
 
-// Trouver un Projet
-export const trouverProjet = async (id_projet) => {
-  const [sql] = await db.query("SELECT * FROM projets WHERE id_projet = ?", [
+// Recherche par ID
+export const trouverProjetParId = async (id_projet) => {
+  const [rows] = await db.query("SELECT * FROM projets WHERE id_projet = ?", [
     id_projet,
   ]);
-  return sql[0];
+
+  return rows[0];
 };
 
-//Créer un projet
+// Recherche par titre
+export const trouverProjetParTitre = async (titre) => {
+  const [rows] = await db.query("SELECT * FROM projets WHERE titre = ?", [
+    titre,
+  ]);
+
+  return rows[0];
+};
+
+// Création
 export const creerProjet = async (
   titre,
   description,
@@ -16,40 +26,65 @@ export const creerProjet = async (
   image_projet,
   id_utilisateur
 ) => {
-  const [sql] = await db.query(
+  const [result] = await db.query(
     `INSERT INTO projets
-        (
-            titre,
-            description,
-            technologies,
-            image_projet,
-            id_utilisateur
-        )
-        VALUES (?, ?, ?, ?, ?)`,
+    (
+      titre,
+      description,
+      technologies,
+      image_projet,
+      id_utilisateur
+    )
+    VALUES (?, ?, ?, ?, ?)`,
     [titre, description, technologies, image_projet, id_utilisateur]
   );
-  return sql.insertId;
+
+  return result.insertId;
 };
 
-//Modifier un projet
-export const modifierProjet = async (id_projet, titre, date_projet) => {
-  const [sql] = await db.query(
-    "UPDATE projets SET titre = ?, date_projet = ? WHERE id_projet= ?",
-    [id_projet, titre, date_projet]
+// Modification
+export const modifierProjet = async (
+  id_projet,
+  titre,
+  description,
+  technologies,
+  image_projet
+) => {
+  const [result] = await db.query(
+    `UPDATE projets
+     SET
+        titre = ?,
+        description = ?,
+        technologies = ?,
+        image_projet = ?
+     WHERE id_projet = ?`,
+    [titre, description, technologies, image_projet, id_projet]
   );
-  return sql.affectedRows;
+
+  return result.affectedRows;
 };
 
-//Suuprimmer un projet
-export const supprimmerProjet = async (id_projet) => {
-  const [sql] = await db.query("DELETE FROM projets WHERE id_projet = ?", [
+// Suppression
+export const supprimerProjet = async (id_projet) => {
+  const [result] = await db.query("DELETE FROM projets WHERE id_projet = ?", [
     id_projet,
   ]);
-  return sql.affectedRows;
+
+  return result.affectedRows;
 };
 
+// Tous les projets
 export const tousLesProjets = async () => {
-  const [rows] = await db.query("SELECT * FROM projets");
+  const [rows] = await db.query(`
+    SELECT
+      p.*,
+      u.prenom,
+      u.nom
+    FROM projets p
+    JOIN utilisateurs u
+      ON p.id_utilisateur = u.id_utilisateur
+    ORDER BY p.date_creation DESC
+  `);
 
   return rows;
 };
