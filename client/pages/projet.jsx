@@ -174,6 +174,8 @@ export default function Projet() {
               date={new Date(projet.date_creation).toLocaleDateString("fr-FR")}
               titre={projet.titre}
               contenu={projet.description}
+              onEdit={() => ouvrirEdition(projet)}
+              onDelete={() => supprimerProjet(projet.id_projet)}
             >
               <div className="tech-list">
                 {projet.technologies?.split(",").map((tech) => (
