@@ -17,3 +17,9 @@ export function updateProjet(id_projet, projet) {
     body: JSON.stringify(projet),
   });
 }
+
+export function deleteProjet(id_projet) {
+  return apiFetch(`/projet/${id_projet}`, {
+    method: "DELETE",
+  });
+}
