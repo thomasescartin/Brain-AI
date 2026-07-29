@@ -23,7 +23,6 @@ export const creerProjet = async (
   titre,
   description,
   technologies,
-  image_projet,
   id_utilisateur
 ) => {
   const [result] = await db.query(
@@ -32,11 +31,10 @@ export const creerProjet = async (
       titre,
       description,
       technologies,
-      image_projet,
       id_utilisateur
     )
     VALUES (?, ?, ?, ?, ?)`,
-    [titre, description, technologies, image_projet, id_utilisateur]
+    [titre, description, technologies, id_utilisateur]
   );
 
   return result.insertId;
@@ -47,18 +45,16 @@ export const modifierProjet = async (
   id_projet,
   titre,
   description,
-  technologies,
-  image_projet
+  technologies
 ) => {
   const [result] = await db.query(
     `UPDATE projets
      SET
         titre = ?,
         description = ?,
-        technologies = ?,
-        image_projet = ?
+        technologies = ? 
      WHERE id_projet = ?`,
-    [titre, description, technologies, image_projet, id_projet]
+    [titre, description, technologies, id_projet]
   );
 
   return result.affectedRows;
