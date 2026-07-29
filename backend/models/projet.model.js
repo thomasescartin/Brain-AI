@@ -33,7 +33,7 @@ export const creerProjet = async (
       technologies,
       id_utilisateur
     )
-    VALUES (?, ?, ?, ?, ?)`,
+    VALUES (?, ?, ?, ?)`,
     [titre, description, technologies, id_utilisateur]
   );
 
