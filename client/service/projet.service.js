@@ -10,3 +10,10 @@ export function createProjet(projet) {
     body: JSON.stringify(projet),
   });
 }
+
+export function updateProjet(id_projet, projet) {
+  return apiFetch(`/projet/${id_projet}`, {
+    method: "PUT",
+    body: JSON.stringify(projet),
+  });
+}
