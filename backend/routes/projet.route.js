@@ -7,15 +7,21 @@ import {
   tableauProjets,
 } from "../controllers/projet.controller.js";
 
+import { authentificationMiddleware } from "../middleware/authentification.middleware.js";
+
 const projetRoute = express.Router();
 
-//Routes d'affichage du projet
-projetRoute.post("/", creationProjet);
-projetRoute.post("/:id_projet", afficherProjet);
-projetRoute.get("/", tableauProjets);
+// Lecture
+projetRoute.get("/", authentificationMiddleware, tableauProjets);
+projetRoute.get("/:id_projet", authentificationMiddleware, afficherProjet);
 
-// Routes de gestion du projet
-projetRoute.put("/:id_projet", modifProjet);
-projetRoute.delete("/:id_projet", supprProjet);
+// Création
+projetRoute.post("/", authentificationMiddleware, creationProjet);
+
+// Modification
+projetRoute.put("/:id_projet", authentificationMiddleware, modifProjet);
+
+// Suppression
+projetRoute.delete("/:id_projet", authentificationMiddleware, supprProjet);
 
 export default projetRoute;

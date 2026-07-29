@@ -3,7 +3,7 @@ import * as projet from "../models/projet.model.js";
 // Création d'un projet
 export const creationProjet = async (req, res) => {
   try {
-    const { titre, description, technologies, image_projet } = req.body;
+    const { titre, description, technologies } = req.body;
 
     if (!titre || !description) {
       return res.status(400).json({
@@ -23,7 +23,6 @@ export const creationProjet = async (req, res) => {
       titre,
       description,
       technologies,
-      image_projet,
       req.user.id
     );
 
@@ -68,14 +67,13 @@ export const modifProjet = async (req, res) => {
   try {
     const { id_projet } = req.params;
 
-    const { titre, description, technologies, image_projet } = req.body;
+    const { titre, description, technologies } = req.body;
 
     const modification = await projet.modifierProjet(
       id_projet,
       titre,
       description,
-      technologies,
-      image_projet
+      technologies
     );
 
     if (!modification) {
