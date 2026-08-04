@@ -1,19 +1,41 @@
 import express from "express";
+
 import {
   creationEvenement,
   afficherEvenement,
   modifEvenement,
   supprEvenement,
+  tableauEvenements,
 } from "../controllers/evenement.controller.js";
+
+import { authentificationMiddleware } from "../middleware/authentification.middleware.js";
 
 const evenementRoute = express.Router();
 
-//Routes d'affichage de l'évènement
-evenementRoute.post("/creation", creationEvenement);
-evenementRoute.post("/affichage", afficherEvenement);
+// Lecture
+evenementRoute.get("/", authentificationMiddleware, tableauEvenements);
 
-//Route de gestion de l'évènement
-evenementRoute.put("/modificationEvent", modifEvenement);
-evenementRoute.delete("/supprimmer", supprEvenement);
+evenementRoute.get(
+  "/:id_evenement",
+  authentificationMiddleware,
+  afficherEvenement
+);
+
+// Création
+evenementRoute.post("/", authentificationMiddleware, creationEvenement);
+
+// Modification
+evenementRoute.put(
+  "/:id_evenement",
+  authentificationMiddleware,
+  modifEvenement
+);
+
+// Suppression
+evenementRoute.delete(
+  "/:id_evenement",
+  authentificationMiddleware,
+  supprEvenement
+);
 
 export default evenementRoute;
