@@ -1,67 +1,137 @@
 import * as evenement from "../models/evenement.model.js";
 
-// Création de l'évènement
+// Création d'un évènement
 export const creationEvenement = async (req, res) => {
   try {
-    const { titre, date_evenement, contenue } = req.body;
-    //Vérification de validité
-    if (!titre || !date_evenement || !contenue) {
+    const { titre, description, lieu, date_evenement } = req.body;
+
+    if (!titre || !description || !lieu || !date_evenement) {
       return res.status(400).json({
-        message: "Tous les champs sont requis",
+        message: "Tous les champs sont obligatoires.",
       });
     }
-    // Vérifier si l'évènement existe déjà
-    const evenementExistant = await evenement.trouverEvenement(titre);
+
+    const evenementExistant = await evenement.trouverEvenementParTitre(titre);
+
     if (evenementExistant) {
-      return res.status(409).json({ message: "Evènement déjà existant" });
+      return res.status(409).json({
+        message: "Cet évènement existe déjà.",
+      });
     }
-    await evenement.creerEvenement(titre, date_evenement, contenue);
-    res.status(201).json({ message: "Evènement créé." });
+
+    const idEvenement = await evenement.creerEvenement(
+      titre,
+      description,
+      lieu,
+      date_evenement,
+      req.user.id
+    );
+
+    res.status(201).json({
+      message: "Évènement créé avec succès.",
+      id_evenement: idEvenement,
+    });
   } catch (error) {
-    console.error(" Erreur d'enregistrement :", error.message);
-    res.status(500).json({ message: "Erreur serveur" });
+    console.error(error);
+
+    res.status(500).json({
+      message: "Erreur serveur.",
+    });
   }
 };
 
-//Afficher l'évènement
+// Affichage d'un évènement
 export const afficherEvenement = async (req, res) => {
   try {
     const { id_evenement } = req.params;
-    // Vérifier si l'évènement existe déjà
-    const evenementExistant = await evenement.trouverEvenement(id_evenement);
-    if (!evenementExistant) {
-      return res.status(404).json({ message: "Evènement inexistant" });
+
+    const event = await evenement.trouverEvenementParId(id_evenement);
+
+    if (!event) {
+      return res.status(404).json({
+        message: "Évènement introuvable.",
+      });
     }
-    // Retrouver l'évènement
-    res.status(200).json(evenementExistant);
+
+    res.json(event);
   } catch (error) {
-    console.error("Erreur d'affichage :", error.message);
-    res.status(500).json({ message: "Erreur serveur" });
+    console.error(error);
+
+    res.status(500).json({
+      message: "Erreur serveur.",
+    });
   }
 };
 
-//Mofifier l'évènement
+// Modification
 export const modifEvenement = async (req, res) => {
-  const { id_evenement } = req.params;
-  const modification = await evenement.modifierEvenement(
-    id_evenement,
-    req.body.titre,
-    req.body.date_evenement,
-    req.body.contenue
-  );
-  if (!modification) {
-    return res.status(400).json({ message: "Evènement non modifier." });
+  try {
+    const { id_evenement } = req.params;
+
+    const { titre, description, lieu, date_evenement } = req.body;
+
+    const modification = await evenement.modifierEvenement(
+      id_evenement,
+      titre,
+      description,
+      lieu,
+      date_evenement
+    );
+
+    if (!modification) {
+      return res.status(404).json({
+        message: "Évènement introuvable.",
+      });
+    }
+
+    res.json({
+      message: "Évènement modifié.",
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Erreur serveur.",
+    });
   }
-  res.json({ message: "Evènement mis à jour." });
 };
 
-//Supprimmer l'évènement
+// Suppression
 export const supprEvenement = async (req, res) => {
-  const supprimmer = await evenement.supprEvenement(req.evenement.id_evenement);
+  try {
+    const { id_evenement } = req.params;
 
-  if (!supprimmer) {
-    return res.status(404).json({ message: "Evènement non trouvé." });
+    const suppression = await evenement.supprimerEvenement(id_evenement);
+
+    if (!suppression) {
+      return res.status(404).json({
+        message: "Évènement introuvable.",
+      });
+    }
+
+    res.json({
+      message: "Évènement supprimé.",
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Erreur serveur.",
+    });
   }
+};
 
-  res.json({ message: "Evènement supprimé." });
+// Liste complète
+export const tableauEvenements = async (req, res) => {
+  try {
+    const evenements = await evenement.tousLesEvenements();
+
+    res.json(evenements);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Erreur serveur.",
+    });
+  }
 };
