@@ -1,0 +1,142 @@
+.evenement-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.evenement-page .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.evenement-page .page-header h1 {
+  color: var(--color-primary);
+}
+
+/* =========================
+   LISTE
+========================= */
+
+.liste-evenements {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* =========================
+   INFORMATIONS EVENEMENT
+========================= */
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 20px;
+  padding: 15px;
+
+  background: var(--color-background);
+
+  border-left: 4px solid var(--color-secondary);
+  border-radius: 8px;
+}
+
+.event-info p {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 15px;
+}
+
+/* =========================
+   FORMULAIRE
+========================= */
+
+.evenement-page .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.evenement-page .input-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.evenement-page .input-group textarea {
+  min-height: 150px;
+
+  resize: vertical;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ccc;
+
+  font-family: inherit;
+}
+
+.evenement-page .input-group textarea:focus {
+  outline: none;
+
+  border-color: var(--color-primary);
+
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================
+   MESSAGE AUCUN EVENEMENT
+========================= */
+
+.liste-evenements > p {
+  text-align: center;
+
+  padding: 50px 20px;
+
+  color: var(--color-text-light);
+
+  background: white;
+
+  border-radius: 15px;
+
+  box-shadow: var(--shadow-small);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 700px) {
+  .evenement-page {
+    padding: 20px;
+  }
+
+  .evenement-page .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .event-info {
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .evenement-page {
+    padding: 15px;
+  }
+
+  .evenement-page .page-header h1 {
+    font-size: 28px;
+  }
+}
