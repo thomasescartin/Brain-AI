@@ -11,6 +11,7 @@ export default function Profil() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("amateur");
   const [avatar, setAvatar] = useState("");
+  const [avatarFile, setAvatarFile] = useState(null);
 
   //  Affichage du profil
   useEffect(() => {
@@ -40,50 +41,70 @@ export default function Profil() {
   }, []);
 
   // Image
-  const handleAvatarChange = (e) => {
+  function handleAvatarChange(e) {
     const file = e.target.files[0];
 
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setAvatar(reader.result);
-    };
-
-    reader.readAsDataURL(file);
-  };
-
-  //  Modification du profil
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-
-    const res = await fetch("http://localhost:5000/api/utilisateurs/update", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        prenom: user.prenom,
-        nom: user.nom,
-        email,
-        mot_de_passe: password,
-        id_role: role === "amateur" ? 2 : 4,
-        photo_utilisateur: avatar,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.message);
+    if (!file) {
       return;
     }
 
-    alert("Profil mis à jour !");
-  };
+    setAvatarFile(file);
+
+    // Prévisualisation locale
+    const preview = URL.createObjectURL(file);
+
+    setAvatar(preview);
+  }
+  //  Modification du profil
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("token");
+
+      // =========================
+      // MODIFICATION INFORMATIONS
+      // =========================
+
+      const res = await fetch("http://localhost:5000/api/utilisateurs/update", {
+        method: "PUT",
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+
+        body: JSON.stringify({
+          prenom: user.prenom,
+          nom: user.nom,
+          email,
+          mot_de_passe: password || undefined,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message);
+      }
+
+      // =========================
+      // MODIFICATION PHOTO
+      // =========================
+
+      if (avatarFile) {
+        await envoyerPhoto();
+      }
+
+      setPassword("");
+
+      alert("Profil mis à jour !");
+    } catch (error) {
+      console.error(error);
+
+      alert(error.message);
+    }
+  }
 
   //  Deconnexion
   const handleLogout = () => {
@@ -92,6 +113,35 @@ export default function Profil() {
   };
 
   if (!user) return <p>Chargement...</p>;
+
+  async function envoyerPhoto() {
+    if (!avatarFile) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    const formData = new FormData();
+
+    formData.append("photo", avatarFile);
+
+    const res = await fetch("http://localhost:5000/api/utilisateurs/photo", {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message);
+    }
+
+    setAvatar(data.photo_utilisateur);
+    setAvatarFile(null);
+  }
 
   return (
     <div>
