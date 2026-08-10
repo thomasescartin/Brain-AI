@@ -11,6 +11,7 @@ import Discussion from "../pages/discussions.jsx";
 import Header from "../components/header.jsx";
 import Footer from "../components/Footer.jsx";
 import Projet from "../pages/projet.jsx";
+import Evenement from "../pages/evenement.jsx";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/profile" element={<Profil />} />
         <Route path="/discussion" element={<Discussion />} />
         <Route path="/projets" element={<Projet />} />
+        <Route path="evenements" element={<Evenement />} />
       </Routes>
       <Footer />
     </>
