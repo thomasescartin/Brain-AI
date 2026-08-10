@@ -57,24 +57,28 @@ export default function Connection() {
   };
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <div className="formulaire">
+    <main className="auth-form">
+      <form className="formulaire" onSubmit={handleSubmit}>
         <h2>Connexion</h2>
 
-        <div>
-          <label>Email</label>
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+
           <input
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Nom"
+            placeholder="Email"
             required
           />
         </div>
 
-        <div>
-          <label>Mot de passe</label>
+        <div className="input-group">
+          <label htmlFor="mot_de_passe">Mot de passe</label>
+
           <input
+            id="mot_de_passe"
             type="password"
             value={mot_de_passe}
             onChange={(e) => setMotDePasse(e.target.value)}
@@ -83,17 +87,22 @@ export default function Connection() {
           />
         </div>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {success && <p style={{ color: "green" }}>{success}</p>}
+        {error && <p className="error">{error}</p>}
+
+        {success && <p className="success">{success}</p>}
 
         <p>
           Pas encore de compte ? <Link to="/inscription">S'inscrire</Link>
         </p>
 
-        <button disabled={!email || !validMDP(mot_de_passe)}>
+        <button
+          type="submit"
+          className="btn primary"
+          disabled={!email || !validMDP(mot_de_passe)}
+        >
           Se connecter
         </button>
-      </div>
-    </form>
+      </form>
+    </main>
   );
 }
