@@ -1,13 +1,9 @@
 import "../style/Input.css";
 
-export default function Input({
-  label,
-
-  ...props
-}) {
+export default function Input({ label, ...props }) {
   return (
     <div className="input-group">
-      <label>{label}</label>
+      {label && <label>{label}</label>}
 
       <input {...props} />
     </div>
