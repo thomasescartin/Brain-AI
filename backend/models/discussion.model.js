@@ -55,9 +55,17 @@ export const supprimerDiscussion = async (id_discussion) => {
 
 // Toutes les discussions
 export const toutesDiscussions = async () => {
-  const [rows] = await db.query(
-    "SELECT * FROM discussions ORDER BY date_discussion DESC"
-  );
+  const [rows] = await db.query(`
+    SELECT
+      d.*,
+      u.prenom,
+      u.nom,
+      u.photo_utilisateur
+    FROM discussions d
+    JOIN utilisateurs u
+      ON d.id_utilisateur = u.id_utilisateur
+    ORDER BY d.date_discussion DESC
+  `);
 
   return rows;
 };
