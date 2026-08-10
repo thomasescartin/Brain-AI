@@ -1,42 +1,63 @@
 import { db } from "../config/db.js";
 
-// Trouver la discussions
+// Trouver une discussion par son ID
 export const trouverDiscussion = async (id_discussion) => {
-  const [sql] = await db.query(
+  const [rows] = await db.query(
     "SELECT * FROM discussions WHERE id_discussion = ?",
     [id_discussion]
   );
-  return sql[0];
+
+  return rows[0];
 };
 
-// Créer la discussion
+// Trouver une discussion par son titre
+export const trouverDiscussionParTitre = async (titre) => {
+  const [rows] = await db.query("SELECT * FROM discussions WHERE titre = ?", [
+    titre,
+  ]);
+
+  return rows[0];
+};
+
+// Créer une discussion
 export const creerDiscussion = async (titre, contenue, id_utilisateur) => {
-  const [sql] = await db.query(
-    "INSERT INTO discussions (titre, contenue, id_utilisateur) VALUES (?, ?, ?)",
+  const [result] = await db.query(
+    `INSERT INTO discussions
+    (titre, contenue, id_utilisateur)
+    VALUES (?, ?, ?)`,
     [titre, contenue, id_utilisateur]
   );
-  return sql.insertId;
+
+  return result.insertId;
 };
 
-//Modifier une discussion
-export const modifierDiscussion = async (titre, contenue, id_discussion) => {
-  const [sql] = await db.query(
-    "UPDATE discussions SET titre = ?, contenue = ? WHERE id_discussion = ?",
+// Modifier une discussion
+export const modifierDiscussion = async (id_discussion, titre, contenue) => {
+  const [result] = await db.query(
+    `UPDATE discussions
+     SET titre = ?, contenue = ?
+     WHERE id_discussion = ?`,
     [titre, contenue, id_discussion]
   );
-  return sql.affectedRows;
+
+  return result.affectedRows;
 };
 
-//Supprimmer une discussion
+// Supprimer une discussion
 export const supprimerDiscussion = async (id_discussion) => {
-  const [sql] = await db.query(
+  const [result] = await db.query(
     "DELETE FROM discussions WHERE id_discussion = ?",
     [id_discussion]
   );
-  return sql.affectedRows;
+
+  return result.affectedRows;
 };
 
+// Toutes les discussions
 export const toutesDiscussions = async () => {
-  const [rows] = await db.query("SELECT * FROM discussions");
+  const [rows] = await db.query(
+    "SELECT * FROM discussions ORDER BY date_discussion DESC"
+  );
+
   return rows;
 };

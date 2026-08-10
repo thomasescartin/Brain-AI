@@ -1,26 +1,38 @@
 import express from "express";
+
 import {
   creationDiscussion,
   afficherDiscussion,
   modifDiscussion,
   supprDiscussion,
-  tableauDIscussions,
+  tableauDiscussions,
 } from "../controllers/discussion.controller.js";
+
 import { authentificationMiddleware } from "../middleware/authentification.middleware.js";
 
 const discussionRoute = express.Router();
 
-//Routes d'affichage d'une discussion
-discussionRoute.post("/", authentificationMiddleware, creationDiscussion);
-discussionRoute.post("/:id_discussion", afficherDiscussion);
+// Affichage de toutes les discussions
+discussionRoute.get("/", tableauDiscussions);
 
-//Route de gestion des discussion
+// Affichage d'une discussion
+discussionRoute.get("/:id_discussion", afficherDiscussion);
+
+// Création
+discussionRoute.post("/", authentificationMiddleware, creationDiscussion);
+
+// Modification
 discussionRoute.put(
   "/:id_discussion",
   authentificationMiddleware,
   modifDiscussion
 );
-discussionRoute.delete("/:id_discussion", supprDiscussion);
-discussionRoute.get("/", tableauDIscussions);
+
+// Suppression
+discussionRoute.delete(
+  "/:id_discussion",
+  authentificationMiddleware,
+  supprDiscussion
+);
 
 export default discussionRoute;
