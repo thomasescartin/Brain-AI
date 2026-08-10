@@ -69,34 +69,41 @@ export default function Inscription() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="formulaire">
-        {" "}
+    <main className="auth-form">
+      <form className="formulaire" onSubmit={handleSubmit}>
         <h2>Inscription</h2>
-        <div>
-          <label>Prénom</label>
+
+        <div className="input-group">
+          <label htmlFor="prenom">Prénom</label>
 
           <input
+            id="prenom"
             type="text"
             value={prenom}
             onChange={(e) => setPrenom(e.target.value)}
             placeholder="Prénom"
+            required
           />
         </div>
-        <div>
-          <label>Nom</label>
+
+        <div className="input-group">
+          <label htmlFor="nom">Nom</label>
 
           <input
+            id="nom"
             type="text"
             value={nom}
             onChange={(e) => setNom(e.target.value)}
             placeholder="Nom"
+            required
           />
         </div>
-        <div>
-          <label>Email</label>
+
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
 
           <input
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -104,10 +111,12 @@ export default function Inscription() {
             required
           />
         </div>
-        <div>
-          <label>Mot de passe</label>
+
+        <div className="input-group">
+          <label htmlFor="password">Mot de passe</label>
 
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -115,10 +124,12 @@ export default function Inscription() {
             required
           />
         </div>
-        <div>
-          <label>Confirmation mot de passe</label>
+
+        <div className="input-group">
+          <label htmlFor="confirmPassword">Confirmation du mot de passe</label>
 
           <input
+            id="confirmPassword"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -126,20 +137,28 @@ export default function Inscription() {
             required
           />
         </div>
-        {!securiteMDP(password) && (
-          <p>
-            Le mot de passe doit contenir : 8 caractères, une majuscule, une
-            minuscule et un chiffre.
+
+        {!securiteMDP(password) && password.length > 0 && (
+          <p className="error">
+            Le mot de passe doit contenir au minimum : 8 caractères, une
+            majuscule, une minuscule et un chiffre.
           </p>
         )}
-        {error && <p>{error}</p>}
-        <button type="submit" disabled={!securiteMDP(password)}>
+
+        {error && <p className="error">{error}</p>}
+
+        <button
+          type="submit"
+          className="btn primary"
+          disabled={!securiteMDP(password)}
+        >
           S'inscrire
         </button>
+
         <p>
-          Vous avez déjà un compte ?<Link to="/connexion"> Se connecter</Link>
+          Vous avez déjà un compte ? <Link to="/connexion">Se connecter</Link>
         </p>
-      </div>
-    </form>
+      </form>
+    </main>
   );
 }
