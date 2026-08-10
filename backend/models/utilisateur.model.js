@@ -61,3 +61,17 @@ export const supprimerUtilisateur = async (id_utilisateur) => {
 
   return result.affectedRows;
 };
+
+export const modifierPhotoUtilisateur = async (
+  id_utilisateur,
+  photo_utilisateur
+) => {
+  const [result] = await db.query(
+    `UPDATE utilisateurs
+     SET photo_utilisateur = ?
+     WHERE id_utilisateur = ?`,
+    [photo_utilisateur, id_utilisateur]
+  );
+
+  return result.affectedRows;
+};
