@@ -13,6 +13,25 @@ export default function Profil() {
   const [avatar, setAvatar] = useState("");
   const [avatarFile, setAvatarFile] = useState(null);
 
+  function getPhotoUrl(photo) {
+    if (!photo) {
+      return "";
+    }
+
+    // Prévisualisation locale
+    if (photo.startsWith("blob:")) {
+      return photo;
+    }
+
+    // URL déjà complète
+    if (photo.startsWith("http")) {
+      return photo;
+    }
+
+    // Chemin provenant de MySQL
+    return `http://localhost:5000${photo}`;
+  }
+
   //  Affichage du profil
   useEffect(() => {
     const fetchProfile = async () => {
@@ -31,7 +50,7 @@ export default function Profil() {
 
       setUser(data);
       setEmail(data.email);
-      setAvatar(data.photo_utilisateur);
+      setAvatar(getPhotoUrl(data.photo_utilisateur));
       setRole(data.id_role === 1 ? "amateur" : "professionnel");
 
       console.log(data);
@@ -139,7 +158,7 @@ export default function Profil() {
       throw new Error(data.message);
     }
 
-    setAvatar(data.photo_utilisateur);
+    setAvatar(getPhotoUrl(data.photo_utilisateur));
     setAvatarFile(null);
   }
 
