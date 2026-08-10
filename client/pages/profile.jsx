@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "../style/formulaire.css";
+import "../style/profileStyle.css";
 
 export default function Profil() {
   const navigate = useNavigate();
