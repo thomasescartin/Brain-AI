@@ -71,8 +71,7 @@ export const login = async (req, res) => {
 // UPDATE UTILISATEUR
 export const modifEmail = async (req, res) => {
   try {
-    const { prenom, nom, email, mot_de_passe, photo_utilisateur, id_role } =
-      req.body;
+    const { prenom, nom, email, mot_de_passe, photo_utilisateur } = req.body;
 
     const utilisateur = await utilisateurs.trouverUtilisateur(req.user.email);
     const mot_de_passe_hash = mot_de_passe
@@ -85,8 +84,7 @@ export const modifEmail = async (req, res) => {
       nom,
       email,
       mot_de_passe_hash,
-      photo_utilisateur,
-      id_role
+      photo_utilisateur
     );
 
     if (!modification) {
