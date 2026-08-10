@@ -126,30 +126,23 @@
   margin-bottom: 20px;
 }
 
-.discussion-avatar {
-  width: 42px;
-
-  height: 42px;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  background: #f3e8df;
-
-  border-radius: 50%;
-
-  font-size: 20px;
-}
-
 .discussion-author {
   color: #6b6b6b;
 
   font-size: 14px;
 
   font-weight: 600;
+}
+
+.discussion-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.discussion-date {
+  color: #888;
+  font-size: 13px;
 }
 
 /* =========================

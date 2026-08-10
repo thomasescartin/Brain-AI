@@ -8,6 +8,7 @@ import {
 } from "../service/discussion.service.js";
 
 import "../style/discussionStyle.css";
+import Avatar from "../components/Avatar.jsx";
 
 export default function Discussion() {
   const [discussions, setDiscussions] = useState([]);
@@ -246,11 +247,22 @@ export default function Discussion() {
               {/* AUTEUR */}
 
               <div className="discussion-card-header">
-                <div className="discussion-avatar">👤</div>
+                <Avatar
+                  src={discussion.photo_utilisateur}
+                  prenom={discussion.prenom}
+                  nom={discussion.nom}
+                  size="small"
+                />
 
-                <div>
+                <div className="discussion-author-info">
                   <span className="discussion-author">
-                    Utilisateur #{discussion.id_utilisateur}
+                    {discussion.prenom} {discussion.nom}
+                  </span>
+
+                  <span className="discussion-date">
+                    {new Date(discussion.date_discussion).toLocaleDateString(
+                      "fr-FR"
+                    )}
                   </span>
                 </div>
               </div>
