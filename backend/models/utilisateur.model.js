@@ -34,7 +34,7 @@ export const modifierUtilisateur = async (
          nom = ?, 
          email = ?, 
          mot_de_passe = ?, 
-         photo_utilisateur = ?, 
+         photo_utilisateur = ?
      WHERE id_utilisateur = ?`,
     [prenom, nom, email, mot_de_passe, photo_utilisateur, id_utilisateur]
   );
