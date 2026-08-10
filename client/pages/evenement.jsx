@@ -27,6 +27,7 @@ export default function Evenement() {
   const [modeEdition, setModeEdition] = useState(false);
   const [evenementSelectionne, setEvenementSelectionne] = useState(null);
 
+  // Chargement des évènements
   useEffect(() => {
     chargerEvenements();
   }, []);
@@ -40,11 +41,11 @@ export default function Evenement() {
     }
   }
 
+  // Fermeture et réinitialisation de la modale
   function fermerModal() {
     setIsOpen(false);
 
     setModeEdition(false);
-
     setEvenementSelectionne(null);
 
     setTitre("");
@@ -53,6 +54,7 @@ export default function Evenement() {
     setDateEvenement("");
   }
 
+  // Ouverture de la modale en mode édition
   function ouvrirEdition(evenement) {
     setEvenementSelectionne(evenement);
 
@@ -61,11 +63,13 @@ export default function Evenement() {
     setTitre(evenement.titre);
     setDescription(evenement.description);
     setLieu(evenement.lieu);
+
     setDateEvenement(evenement.date_evenement.substring(0, 16));
 
     setIsOpen(true);
   }
 
+  // Création ou modification
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -91,23 +95,31 @@ export default function Evenement() {
       fermerModal();
     } catch (error) {
       console.error(error);
-
       alert(error.message);
     }
   }
 
+  // Suppression
   async function supprimerEvenement(id) {
-    if (!window.confirm("Supprimer cet évènement ?")) {
+    const confirmation = window.confirm("Supprimer cet évènement ?");
+
+    if (!confirmation) {
       return;
     }
 
-    await deleteEvenement(id);
+    try {
+      await deleteEvenement(id);
 
-    await chargerEvenements();
+      await chargerEvenements();
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
   }
 
   return (
     <div className="evenement-page">
+      {/* En-tête de la page */}
       <div className="page-header">
         <h1>📅 Évènements</h1>
 
@@ -121,6 +133,7 @@ export default function Evenement() {
         </Button>
       </div>
 
+      {/* Modale de création / modification */}
       <Modal
         isOpen={isOpen}
         title={modeEdition ? "Modifier l'évènement" : "Créer un évènement"}
@@ -131,12 +144,14 @@ export default function Evenement() {
             label="Titre"
             value={titre}
             onChange={(e) => setTitre(e.target.value)}
+            required
           />
 
           <Input
             label="Lieu"
             value={lieu}
             onChange={(e) => setLieu(e.target.value)}
+            required
           />
 
           <Input
@@ -144,6 +159,7 @@ export default function Evenement() {
             label="Date"
             value={dateEvenement}
             onChange={(e) => setDateEvenement(e.target.value)}
+            required
           />
 
           <div className="input-group">
@@ -152,6 +168,7 @@ export default function Evenement() {
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
             />
           </div>
 
@@ -159,6 +176,7 @@ export default function Evenement() {
         </form>
       </Modal>
 
+      {/* Liste des évènements */}
       <div className="liste-evenements">
         {evenements.length === 0 ? (
           <p>Aucun évènement disponible.</p>
