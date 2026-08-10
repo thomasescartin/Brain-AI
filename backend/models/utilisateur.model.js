@@ -26,8 +26,7 @@ export const modifierUtilisateur = async (
   nom,
   email,
   mot_de_passe,
-  photo_utilisateur,
-  id_role
+  photo_utilisateur
 ) => {
   const [result] = await db.query(
     `UPDATE utilisateurs 
@@ -36,17 +35,8 @@ export const modifierUtilisateur = async (
          email = ?, 
          mot_de_passe = ?, 
          photo_utilisateur = ?, 
-         id_role = ?
      WHERE id_utilisateur = ?`,
-    [
-      prenom,
-      nom,
-      email,
-      mot_de_passe,
-      photo_utilisateur,
-      id_role,
-      id_utilisateur,
-    ]
+    [prenom, nom, email, mot_de_passe, photo_utilisateur, id_utilisateur]
   );
 
   return result.affectedRows;
