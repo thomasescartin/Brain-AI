@@ -5,9 +5,11 @@ import {
   modifEmail,
   supprimmerCompte,
   me,
+  modifierPhoto,
 } from "../controllers/utilisateurs.controller.js";
 import { authentificationMiddleware } from "../middleware/authentification.middleware.js";
 import { rateLimiter } from "../middleware/ratelimiter.middleware.js";
+import { uploadAvatar } from "../middleware/upload.middlware.js";
 
 const utilisateurRoute = express.Router();
 
@@ -17,6 +19,12 @@ utilisateurRoute.post("/login", rateLimiter, login);
 
 //Routes Utilisateurs
 utilisateurRoute.put("/update", authentificationMiddleware, modifEmail);
+utilisateurRoute.put(
+  "/photo",
+  authentificationMiddleware,
+  uploadAvatar.single("photo"),
+  modifierPhoto
+);
 utilisateurRoute.delete(
   "/delete",
   authentificationMiddleware,
