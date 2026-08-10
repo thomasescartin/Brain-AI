@@ -160,26 +160,32 @@ export default function Evenement() {
       </Modal>
 
       <div className="liste-evenements">
-        {evenements.map((event) => (
-          <PostCard
-            key={event.id_evenement}
-            auteur={`${event.prenom} ${event.nom}`}
-            prenom={event.prenom}
-            nom={event.nom}
-            photo={event.photo_utilisateur}
-            date={new Date(event.date_creation).toLocaleDateString("fr-FR")}
-            titre={event.titre}
-            contenu={event.description}
-            onEdit={() => ouvrirEdition(event)}
-            onDelete={() => supprimerEvenement(event.id_evenement)}
-          >
-            <div className="event-info">
-              <p>📍 {event.lieu}</p>
+        {evenements.length === 0 ? (
+          <p>Aucun évènement disponible.</p>
+        ) : (
+          evenements.map((event) => (
+            <PostCard
+              key={event.id_evenement}
+              auteur={`${event.prenom} ${event.nom}`}
+              prenom={event.prenom}
+              nom={event.nom}
+              photo={event.photo_utilisateur}
+              date={new Date(event.date_creation).toLocaleDateString("fr-FR")}
+              titre={event.titre}
+              contenu={event.description}
+              onEdit={() => ouvrirEdition(event)}
+              onDelete={() => supprimerEvenement(event.id_evenement)}
+            >
+              <div className="event-info">
+                <p>📍 {event.lieu}</p>
 
-              <p>📅 {new Date(event.date_evenement).toLocaleString("fr-FR")}</p>
-            </div>
-          </PostCard>
-        ))}
+                <p>
+                  📅 {new Date(event.date_evenement).toLocaleString("fr-FR")}
+                </p>
+              </div>
+            </PostCard>
+          ))
+        )}
       </div>
     </div>
   );
