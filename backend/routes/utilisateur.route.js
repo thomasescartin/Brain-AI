@@ -17,7 +17,11 @@ utilisateurRoute.post("/login", rateLimiter, login);
 
 //Routes Utilisateurs
 utilisateurRoute.put("/update", authentificationMiddleware, modifEmail);
-utilisateurRoute.delete("/delete", supprimmerCompte);
+utilisateurRoute.delete(
+  "/delete",
+  authentificationMiddleware,
+  supprimmerCompte
+);
 utilisateurRoute.get("/me", authentificationMiddleware, me);
 
 export default utilisateurRoute;
