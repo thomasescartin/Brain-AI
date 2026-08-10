@@ -119,7 +119,7 @@ npm create vite@latest frontend
 Les différentes bibliothèques
 
 ```bash
-npm install express cors dotenv jsonwebtoken argon2 mysql2 express-rate-limit helmet react-icons
+npm install express cors dotenv jsonwebtoken argon2 mysql2 express-rate-limit helmet react-icons multer
 ```
 
 ### 3. Configurer les variables d’environnement
