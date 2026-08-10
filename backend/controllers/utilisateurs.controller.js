@@ -74,9 +74,10 @@ export const modifEmail = async (req, res) => {
     const { prenom, nom, email, mot_de_passe, photo_utilisateur, id_role } =
       req.body;
 
+    const utilisateur = await utilisateurs.trouverUtilisateur(req.user.email);
     const mot_de_passe_hash = mot_de_passe
       ? await argon2.hash(mot_de_passe)
-      : undefined;
+      : utilisateur.mot_de_passe;
 
     const modification = await utilisateurs.modifierUtilisateur(
       req.user.id,
