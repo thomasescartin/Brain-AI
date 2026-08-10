@@ -138,3 +138,37 @@ export const me = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const modifierPhoto = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        message: "Aucune image reçue.",
+      });
+    }
+
+    const photoUtilisateur = `/uploads/profiles/${req.file.filename}`;
+
+    const modification = await utilisateurs.modifierPhotoUtilisateur(
+      req.user.id,
+      photoUtilisateur
+    );
+
+    if (!modification) {
+      return res.status(404).json({
+        message: "Utilisateur non trouvé.",
+      });
+    }
+
+    res.status(200).json({
+      message: "Photo de profil mise à jour.",
+      photo_utilisateur: photoUtilisateur,
+    });
+  } catch (error) {
+    console.error("Erreur modification photo :", error);
+
+    res.status(500).json({
+      message: "Erreur serveur.",
+    });
+  }
+};
